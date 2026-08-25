@@ -1,0 +1,21 @@
+2026-08-24 09:28:02  [good]  repair memory ready: F:\hugos way settings\MQL_ONE_FIXED_v5.5\_work\repair_knowledge.sqlite3
+2026-08-24 09:28:02  [good]  engine v5.5.0 ready — click START COMPILER to begin — REAL pipeline
+2026-08-24 09:28:05  [info]  MetaEditor: C:\Program Files\OANDA TMS MT5 Terminal\MetaEditor64.exe
+2026-08-24 09:28:05  [info]  watching: F:\hugos way settings\MQL_ONE_FIXED_v5.5\WATCH_INBOX
+2026-08-24 09:37:34  [good]  repair memory ready: F:\hugos way settings\MQL_ONE_FIXED_v5.5\_work\repair_knowledge.sqlite3
+2026-08-24 09:37:34  [good]  engine v5.5.0 ready — click START COMPILER to begin — REAL pipeline
+2026-08-24 09:37:38  [info]  MetaEditor: C:\Program Files\OANDA TMS MT5 Terminal\MetaEditor64.exe
+2026-08-24 09:37:38  [info]  watching: F:\hugos way settings\MQL_ONE_FIXED_v5.5\WATCH_INBOX
+2026-08-24 09:46:56  [good]  COMPILER RUN #1 STARTED
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: -- Heiken_Ashi_Ma_T3__2 — high-risk capabilities
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: !                              my i-Sessions1 — structural review required: no SetIndexBuffer calls
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: -- Heiken_Ashi_Ma_T3 — high-risk capabilities
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: !   MTH MT4 B509 SSA CycDiv Indi — high-risk capabilities
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: !   mth_FastTMALine — compile failed (3 errors)
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: !   T_Kiads BMI Long Mod v01 — compile failed (52 errors)
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: !   mth_FastTMALine_2 — compile failed (20 errors)
+2026-08-24 09:46:58  [error]  MQ5 QUARANTINED: !   T_Kiads BMI Long Mod v01_2 — compile failed (52 errors)
+2026-08-24 09:47:00  [good]  MQ5 STATIC + COMPILE VERIFIED: !  X2 PRICE ZONE 2_3; runtime pending
+2026-08-24 09:47:00  [good]  MQ5 STATIC + COMPILE VERIFIED: !  X2 PRICE ZONE 2; runtime pending
+2026-08-24 09:47:00  [good]  MQ5 STATIC + COMPILE VERIFIED: !  X2 PRICE ZONE 2_2; runtime pending
+2026-08-24 09:47:00  [good]  COMPILER RUN #1 FINISHED — 3 delivered, 8 blocked — elapsed 3.3s

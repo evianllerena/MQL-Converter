@@ -1,0 +1,11 @@
+{
+  "textio": "1.0.0",
+  "convert": "3.0.0",
+  "repair": "2.3.0",
+  "compile": "1.4.0",
+  "intake": "1.0.0",
+  "diagnostics": "1.4.0"
+  ,"agent": "1.4.0"
+  ,"knowledge": "1.1.0"
+  ,"mq5validate": "1.0.0"
+}
