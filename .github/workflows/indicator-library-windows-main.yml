@@ -6,6 +6,9 @@ on:
     paths:
       - 'indicator-library-build/**'
       - '.github/workflows/indicator-library-windows-main.yml'
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
