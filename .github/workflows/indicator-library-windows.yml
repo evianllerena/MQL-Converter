@@ -1,0 +1,72 @@
+name: Indicator Library Windows Installer
+
+on:
+  push:
+    branches:
+      - indicator-library-beta-build
+  workflow_dispatch:
+
+jobs:
+  build-windows-installer:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout isolated build branch
+        uses: actions/checkout@v4
+        with:
+          ref: indicator-library-beta-build
+
+      - name: Rehydrate Indicator Library source
+        shell: pwsh
+        run: |
+          $b64 = Get-Content -Raw indicator-library/source.zip.b64
+          [IO.File]::WriteAllBytes("indicator-library-source.zip", [Convert]::FromBase64String($b64))
+          New-Item -ItemType Directory -Force -Path indicator-library-app | Out-Null
+          Expand-Archive -Path indicator-library-source.zip -DestinationPath indicator-library-app -Force
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build bundled MQL analysis engine
+        shell: pwsh
+        working-directory: indicator-library-app
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r engine/requirements-build.txt
+          python -m PyInstaller --noconfirm --clean --onefile --name mql-engine --distpath build-sidecar --workpath build-pyinstaller --specpath build-pyinstaller engine/engine.py
+          New-Item -ItemType Directory -Force -Path src-tauri/binaries | Out-Null
+          Copy-Item build-sidecar/mql-engine.exe src-tauri/binaries/mql-engine-x86_64-pc-windows-msvc.exe -Force
+
+      - name: Install frontend dependencies
+        working-directory: indicator-library-app
+        run: npm install
+
+      - name: Build Windows Setup EXE
+        working-directory: indicator-library-app
+        run: npm run tauri build
+
+      - name: Verify installer exists
+        shell: pwsh
+        working-directory: indicator-library-app
+        run: |
+          $files = Get-ChildItem -Path src-tauri/target/release/bundle/nsis -Filter *.exe -ErrorAction Stop
+          if (-not $files) { throw 'Windows installer was not produced.' }
+          $files | ForEach-Object { Write-Host "Installer: $($_.FullName) ($([math]::Round($_.Length/1MB,2)) MB)" }
+
+      - name: Upload finished Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: MQL-Indicator-Library-0.2.0-beta.1-Windows-Setup
+          path: indicator-library-app/src-tauri/target/release/bundle/nsis/*.exe
+          if-no-files-found: error
+          retention-days: 14
